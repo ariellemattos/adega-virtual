@@ -1,0 +1,72 @@
+<style>
+    .header {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0;
+    }
+
+    .header ul {
+        display: flex;
+        align-items: center;
+    }
+
+    .header ul li {
+        list-style: none;
+        margin: 0 25px;
+        color: #3e3e3e;
+    }
+
+    .header ul li a {
+        text-decoration: none;
+        color: #3e3e3e;
+    }
+
+    .header ul li:not(.logo-container) a:hover {
+        color: #f9ae19;
+    }
+
+    .logo-container span {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo-container img {
+        width: 65px;
+            margin-right: 8px;
+    }
+
+    .logo-title {
+        font-size: 21px;
+        font-weight: 600;
+    }
+
+    .logo-title span {
+        color: #f9ae19;
+    }
+</style>
+<div class="header">
+    <ul>
+        <li class="logo-container">
+            <a href="/">
+                <span class="logo-container">
+                    <img src="../assets/images/logo.png" alt="" class="logo">
+                    <span class="logo-title">
+                        <span class="">Adega</span>.com
+                    </span>
+                </span>
+            </a>
+        </li>
+        <li><a href="/adega/cadastro">Cadastro de adegas</a></li>
+        <li><a a href="/adegas">Lista de adegas</a></li>
+        <li><a href="/cliente/cadastro">Cadastro de clientes</a></li>
+        <li><a a href="/clientes">Lista de clientes</a></li>
+        <li><a href="/produto/cadastro">Cadastro de produtos</a></li>
+        <li><a a href="/produtos">Lista de produtos</a></li>
+
+        <li>
+            <form action="/logout" id="form_logout" method="POST">
+                <button class="button secondary" >Sair</button>
+            </form>
+        </li>
+    </ul>
+</div>

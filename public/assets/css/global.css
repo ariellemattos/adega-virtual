@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+@import url('./components/button.css');
+@import url('./components/typograpph.css');
+@import url('./components/input.css');
+@import url('./components/decorate.css');
+@import url('./components/table.css');
+
+* {
+	box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    margin: 0px;
+    background: #f5f3f4;
+}

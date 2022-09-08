@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../assets/css/global.css" />
+        <link rel="stylesheet" href="../assets/css/pages/cadastro-produtos.css" />
+        <link rel="icon" type="image/x-icon" href="../assets/images/logo.png">
+		<title>adega.com</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            async function excluir() {
+                if (confirm("Deseja excluir o cadastro?")) {
+                    await $.ajax('/produto/{{ produto["id_produto"] }}', { method: 'delete' });
+                    window.location = "/produtos";
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="a-quarter-circle primary right"></div>
+        {% include 'components/header.html' %}
+        <div class="container" id="container">
+            <div class="left-register">
+                <img src="../assets/images/formProduto.png" class="left-img" alt="imagens">
+            </div>
+
+            <div class="right-register">
+                <div class="form-container-register register-in-container">
+                    <form action="/produto/{{ produto['id_produto'] }}" method="POST">
+                    
+                        {% if produto['id_produto'] != 'cadastro' %}
+                            <h1>Editar Produto</h1>
+                        {% else %}
+                            <h1>Cadastrar Produto</h1>
+                        {% endif %}
+                    
+                        <div class="input-group">
+                            <div class="input-box">
+                                <label for="nomeProduto">Nome *</label>
+                                <input id="nomeProduto" type="text" name="nomeProduto" value="{{produto['nomeProduto']}}" placeholder="Digite o nome do produto" required>
+                                <span class="helper hide"></span>
+                            </div>
+        
+                            <div class="input-box">
+                                <label for="preco">Preço *</label>
+                                <input id="preco" step="any" type="number" name="preco" value="{{produto['preco']}}" placeholder="Digite o Preço" required>
+                                <span class="helper hide"></span>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="quantidade">Quantidade *</label>
+                                <input id="quantidade" type="number" name="quantidade" value="{{produto['quantidade']}}" placeholder="Digite a quantidade" required>
+                                <span class="helper hide"></span>
+                            </div>
+        
+                        </div>
+                        <div class="container-buttons">
+                            <button class="button primary" type="submit">Salvar</button>
+
+                            {% if produto['id_produto'] != 'cadastro' %}
+                                <button class="button primary" onclick="excluir()">
+                                    Excluir
+                                </button>
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

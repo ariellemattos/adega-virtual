@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../assets/css/global.css" />
+        <link rel="stylesheet" href="../assets/css/pages/cadastro-adegas.css" />
+        <link rel="icon" type="image/x-icon" href="../assets/images/logo.png">
+		<title>adega.com</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            async function excluir() {
+                if (confirm("Deseja excluir o cadastro?")) {
+                    await $.ajax('/adega/{{ adega["id_adega"] }}', { method: 'delete' });
+                    window.location = "/adegas";
+                }
+            }
+        </script>
+    </head>
+    <body>
+        {% include 'components/header.html' %}
+        <div class="a-quarter-circle primary right"></div>
+        <div class="container" id="container">
+            <div class="left-register">
+                <img src="../assets/images/formCadastro.png" class="left-img" alt="imagens">
+            </div>
+
+            <div class="right-register">
+                <div class="form-container-register register-in-container">
+                    
+                    <form action="/adega/{{ adega['id_adega'] }}" method="POST">
+                        {% if adega['id_adega'] != 'cadastro' %}
+                            <h1>Editar Adega</h1>
+                        {% else %}
+                            <h1>Cadastrar Adega</h1>
+                        {% endif %}
+                        <div class="input-group">
+                            <div class="input-box">
+                                <label for="nomeAdega">Nome da Adega*</label>
+                                <input id="nomeAdega" type="text" name="nomeAdega" value="{{adega['nomeAdega']}}" placeholder="Digite o nome da adega" required>
+                                <span class="helper hide"></span>
+                            </div>
+        
+                            <div class="input-box">
+                                <label for="cnpj">CNPJ *</label>
+                                <input id="cnpj" type="text" name="cnpj" value="{{adega['cnpj']}}" placeholder="XX.XXX.XXX/XXXX-XX" required>
+                                <span class="helper hide"></span>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="cep">CEP *</label>
+                                <input id="cep" type="text" name="cep" value="{{adega['cep']}}" placeholder="XXXXX-XXX" required>
+                                <span class="helper hide"></span>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="cidade">Cidade *</label>
+                                <input id="cidade" type="text" name="cidade" value="{{adega['cidade']}}" placeholder="Sua cidade" required>
+                                <span class="helper hide"></span>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="rua">Rua *</label>
+                                <input id="rua" type="text" name="rua" value="{{adega['rua']}}" placeholder="Sua rua" required>
+                                <span class="helper hide"></span>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="bairro">Bairro *</label>
+                                <input id="bairro" type="text" name="bairro" value="{{adega['bairro']}}" placeholder="Seu bairro" required>
+                                <span class="helper hide"></span>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="nEstabelecimento">Nº estabelecimento *</label>
+                                <input id="nEstabelecimento" type="text" value="{{adega['nEstabelecimento']}}" name="nEstabelecimento" placeholder="Numero do estabelecimento" required>
+                                <span class="helper hide"></span>
+                            </div>
+
+                            <div class="input-box">
+                                <label for="complemento">Complemento</label>
+                                <input id="complemento" type="text" name="complemento" value="{{adega['complemento']}}" placeholder="Complemento do local">
+                                <span class="helper hide"></span>
+                            </div>
+        
+                            <div class="input-box">
+                                <label for="telefone">Telefone *</label>
+                                <input id="telefone" type="text" name="telefone" value="{{adega['telefone']}}" placeholder="Seu telefone" required>
+                                <span class="helper hide"></span>
+                            </div>
+        
+                        </div>
+                        <div class="container-buttons">
+                            
+                            <button class = "button primary">Salvar</button>
+
+                            {% if adega['id_adega'] != 'cadastro' %}
+                                <button class="button primary" onclick="excluir()">
+                                    Excluir
+                                </button>
+                            {% endif %}
+                           
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

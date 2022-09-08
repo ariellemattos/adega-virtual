@@ -1,0 +1,45 @@
+.button {
+	font-size: 14px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 100ms ease-in;
+}
+
+.button.rounded {
+    border-radius: 20px;
+}
+
+
+/* Primary */
+
+.button.primary {
+    background-color: #f9ae19;
+    border: 1px solid #f9ae19;
+    color: #FFFFFF;
+}
+
+.button.primary:hover {
+    background-color: #ffc144;
+}
+
+/* Secondary */
+
+.button.secondary {
+    background-color: #fefefe;
+    border: 1px solid #dadada;
+    color: #696969;
+}
+
+.button.secondary:hover {
+    background-color: #bebebe;
+}
+
+.icon-button {
+    font-size: 0px;
+    padding: 10px;
+    border-radius: 150px;
+}

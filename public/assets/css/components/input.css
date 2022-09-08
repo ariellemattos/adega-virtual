@@ -1,0 +1,40 @@
+.input-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-box input {
+    margin: 0.3rem 0;
+    padding: 0.8rem 1.2rem;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    background-color: #efefef;
+    font-size: 0.8rem;
+}
+
+.input-box input:hover {
+    background-color: #eeeeee75;
+}
+
+.input-box input:focus-visible {
+    outline: 1px solid #f9ae19;
+}
+
+.input-box label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #000000c0;
+}
+
+.input-box input::placeholder {
+    color: #000000be;
+}
+
+.input-box .helper {
+    font-size: 12px;
+    max-height: max-content;
+}
+
+.input-box .hide {
+    max-height: 0px;
+}

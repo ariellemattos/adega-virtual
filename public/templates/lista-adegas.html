@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../assets/css/global.css" />
+        <link rel="stylesheet" href="../assets/css/pages/listar-clientes.css" />
+        <link rel="icon" type="image/x-icon" href="../assets/images/logo.png">
+		<title>adega.com</title>
+    </head>
+    <body>
+        <div class="a-quarter-circle primary right"></div>
+        {% include 'components/header.html' %}
+        <div class="container" id="container">
+            <div class="left-list">
+                <img src="../assets/images/formCadastro.png" class="left-img" alt="imagens">
+            </div>
+
+            <div class="right-list">
+                <div class="form-container-list list-in-container">
+                    <div>
+                        <table class="table table-hover">
+                            <thead>
+                              <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">CNPJ</th>
+                                <th scope="col">Telefone</th>
+                                <th scope="col">Ações</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                               
+                            {% for adega in adegas %}  
+                              <tr>
+                                <th scope="row">{{adega['id_adega']}}</th>
+                                <td>{{adega['nomeAdega']}}</td>
+                                <td>{{adega['cnpj']}}</td>
+                                <td>{{adega['telefone']}}</td>
+                                <td>
+                                  <a href="/adega/{{adega['id_adega']}}" href="href=">
+                                    <button class="button secondary icon-button">
+                                        <img src="/assets/images/edit.svg">
+                                    </button>
+                                </a>
+                                </td>
+                              </tr>
+                            {% endfor %}
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
