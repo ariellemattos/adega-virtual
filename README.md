@@ -5,11 +5,16 @@ Este é um projeto acadêmico da Faculdade Impacta, a ideia do projeto é criar 
 ## Tecnologias e linguagens que serão utilizadas neste projeto
 - HTML;
 - CSS;
-- Angular;
-- Node
-- My SQL
+- Flask
+- SQLite
 
 ## Telas disponiveis 
-- Tela Inicial
 - Tela Login
+- Tela Inicial
+- Cadastro e Edição Adega
+- Cadastro e Edição Cliente
+- Cadastro e Edição Produto
+- Listagem Adega
+- Listagem Cliente
+- Listagem Produto
 
