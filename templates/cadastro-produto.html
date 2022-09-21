@@ -27,7 +27,6 @@
 
             <div class="right-register">
                 <div class="form-container-register register-in-container">
-                    {% include "components/alert.html" %}
                     <form action="/produto/{{ produto['id_produto'] }}" method="POST">
                     
                         {% if produto['id_produto'] != 'cadastro' %}
