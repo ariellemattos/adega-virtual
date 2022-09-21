@@ -17,6 +17,9 @@
             <div class="right-login">
                 <div class="form-container sign-in-container">
                     <form action="/realizarLogin" method="POST">
+                        {% if erro %}
+                            <p class="erro"> {{erro}} </p>
+                        {% endif %}
                         <h1 class="loginHeader">Login</h1>
                         <div class="container-login-type">
                             <div class="radio group">

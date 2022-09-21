@@ -9,10 +9,13 @@
 	</head>
 	<body>
 		<div class="container">
+			{% if mensagem != '' %}
+				{% include 'components/alert.html' %}
+			{% endif %}
 			<div class="hero">
 				<!-- HEADER -->
 				{% include 'components/header.html' %}
-
+				
 				<!-- BG -->
 				<div class="bg">
 					<div class="left">

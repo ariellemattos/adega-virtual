@@ -1,4 +1,4 @@
-from flask import Flask, make_response, request, render_template, redirect, Response
+from flask import Flask, make_response, request, render_template, redirect, Response,  flash
 
 from database import *
 from services import *
@@ -25,7 +25,7 @@ def realizar_login():
     logado = db_fazer_login(login, senha)
 
     if logado is None:
-        return render_template("login.html", erro = "Ops. A senha estava errada.")
+        return render_template("login.html", erro = "E-mail ou senha incorretos")
     resposta = make_response(redirect("/"))
 
     resposta.set_cookie("login", login, samesite = "Strict")
@@ -80,8 +80,9 @@ def criar_adega_api():
 
     ja_existia, adega = criar_adega(nomeAdega, cnpj, cep, cidade, rua, bairro, nEstabelecimento, complemento, telefone)
 
-    mensagem = f"A adega {cnpj} já existe com o id {adega['id_adega']}." if ja_existia else f"A adega {cnpj} foi criada com id {adega['id_adega']}."
+    mensagem = f"A adega {cnpj} já existe com o id {adega['id_adega']}." if ja_existia else f"A adega {cnpj} foi criada com id {adega['id_adega']}"
     return render_template("index.html", logado = logado, mensagem = mensagem)
+    
 
 # Tela de listagem de adegas.
 @app.route("/adegas")
@@ -173,7 +174,7 @@ def criar_cliente_api():
 
     ja_existia, cliente = criar_cliente(nomeCliente, cpf, cep, cidade, rua, bairro, nResidencia, complemento, telefone)
 
-    mensagem = f"O cliente {cpf} já existe com o id {cliente['id_cliente']}." if ja_existia else f"A adega {cpf} foi criada com id {cliente['id_cliente']}."
+    mensagem = f"O cliente {cpf} já existe com o id {cliente['id_cliente']}." if ja_existia else f"O cliente {cpf} foi criada com id {cliente['id_cliente']}."
     return render_template("index.html", logado = logado, mensagem = mensagem)
 
 @app.route("/clientes")
@@ -254,6 +255,7 @@ def criar_produto_api():
     criar_produto(nomeProduto, preco, quantidade)
 
     return render_template("index.html", logado = logado)
+    
 
 @app.route("/produtos")
 def listar_produtos_api():
