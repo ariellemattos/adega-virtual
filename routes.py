@@ -3,7 +3,7 @@ from flask import Flask, make_response, request, render_template, redirect, Resp
 from database import *
 from services import *
 
-app = Flask(__name__, static_folder='assets')
+app = Flask(__name__, static_folder='static')
 
 @app.route("/")
 @app.route("/realizarLogin")
