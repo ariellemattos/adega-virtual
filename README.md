@@ -1,6 +1,7 @@
 # adega.com
 Este é um projeto acadêmico da Faculdade Impacta, a ideia do projeto é criar uma aplicação simples de delivery
 
+https://adega.herokuapp.com/adegas
 
 ## Tecnologias e linguagens que serão utilizadas neste projeto
 - HTML;
