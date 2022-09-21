@@ -6,15 +6,19 @@
 		<link rel="stylesheet" href="../assets/css/global.css" />
         <link rel="stylesheet" href="../assets/css/pages/cadastro-clientes.css" />
         <link rel="icon" type="image/x-icon" href="../assets/images/logo.png">
-		<title>adega.com</title>
+        <title>adega.com</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        
         <script>
+            window.addEventListener('load', (e) => new CustomMask());
+
             async function excluir() {
                 if (confirm("Deseja excluir o cadastro?")) {
                     await $.ajax('/cliente/{{ cliente["id_cliente"] }}', { method: 'delete' });
                     window.location = "/clientes";
                 }
             }
+
         </script>
     </head>
     <body>
@@ -43,7 +47,7 @@
         
                             <div class="input-box">
                                 <label for="cpf">CPF *</label>
-                                <input id="cpf" type="text" name="cpf" value="{{cliente['cpf']}}" placeholder="xxx.XXX.XXX-XX" required>
+                                <input Id="cpf" type="text" name="cpf" value="{{cliente['cpf']}}" placeholder="XXX.XXX.XXX-XX" required>
                                 <span class="helper hide"></span>
                             </div>
 
