@@ -254,7 +254,9 @@ def criar_produto_api():
 
     criar_produto(nomeProduto, preco, quantidade)
 
-    return render_template("index.html", logado = logado)
+
+    mensagem =  f"O produto {nomeProduto} foi criado com sucesso"
+    return render_template("index.html", logado = logado, mensagem = mensagem)
     
 
 @app.route("/produtos")

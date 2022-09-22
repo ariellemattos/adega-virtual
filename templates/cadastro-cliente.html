@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="/static/css/pages/cadastro-clientes.css" />
         <link rel="icon" type="image/x-icon" href="/static/images/logo.png">
         <title>adega.com</title>
+        <script src="/static/js/utils/mascara.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         
         <script>
@@ -47,13 +48,13 @@
         
                             <div class="input-box">
                                 <label for="cpf">CPF *</label>
-                                <input Id="cpf" type="text" name="cpf" value="{{cliente['cpf']}}" placeholder="XXX.XXX.XXX-XX" required>
+                                <input id="cpf" type="text" name="cpf" value="{{cliente['cpf']}}" placeholder="XXX.XXX.XXX-XX" onkeyup="mascara('###.###.###-##',this,event,true)" required>
                                 <span class="helper hide"></span>
                             </div>
 
                             <div class="input-box">
                                 <label for="cep">CEP *</label>
-                                <input id="cep" type="text" name="cep" value="{{cliente['cep']}}" placeholder="XXXXX-XXX" required>
+                                <input id="cep" type="text" name="cep" value="{{cliente['cep']}}" placeholder="XXXXX-XXX" onkeyup="mascara('#####-###',this,event,true)" required>
                                 <span class="helper hide"></span>
                             </div>
 
@@ -89,7 +90,7 @@
 
                             <div class="input-box">
                                 <label for="telefone">Telefone *</label>
-                                <input id="telefone" type="text" name="telefone" value="{{cliente['telefone']}}" placeholder="Seu telefone" required>
+                                <input id="telefone" type="text" name="telefone" value="{{cliente['telefone']}}" placeholder="(XX) XXXXX-XXXX" onkeyup="mascara('(##) #####-####',this,event,true)"required>
                                 <span class="helper hide"></span>
                             </div>       
                         </div>
@@ -97,7 +98,7 @@
                             <button class = "button primary">Salvar</button>
 
                             {% if cliente['id_cliente'] != 'cadastro' %}
-                                <button class="button primary" onclick="excluir()">
+                                <button class="button primary" type="button" onclick="excluir()">
                                     Excluir
                                 </button>
                             {% endif %}

@@ -8,6 +8,7 @@
         <link rel="icon" type="image/x-icon" href="/static/images/logo.png">
 		<title>adega.com</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="/static/js/utils/mascara.min.js"></script>
         <script>
             async function excluir() {
                 if (confirm("Deseja excluir o cadastro?")) {
@@ -43,13 +44,13 @@
         
                             <div class="input-box">
                                 <label for="cnpj">CNPJ *</label>
-                                <input id="cnpj" type="text" name="cnpj" value="{{adega['cnpj']}}" placeholder="XX.XXX.XXX/XXXX-XX" required>
+                                <input id="cnpj" type="text" name="cnpj" value="{{adega['cnpj']}}" placeholder="XX.XXX.XXX/XXXX-XX" onkeyup="mascara('##.###.###/####-##',this,event,true)" required>
                                 <span class="helper hide"></span>
                             </div>
 
                             <div class="input-box">
                                 <label for="cep">CEP *</label>
-                                <input id="cep" type="text" name="cep" value="{{adega['cep']}}" placeholder="XXXXX-XXX" required>
+                                <input id="cep" type="text" name="cep" value="{{adega['cep']}}" placeholder="XXXXX-XXX" onkeyup="mascara('#####-###',this,event,true)" required>
                                 <span class="helper hide"></span>
                             </div>
 
@@ -85,7 +86,7 @@
         
                             <div class="input-box">
                                 <label for="telefone">Telefone *</label>
-                                <input id="telefone" type="text" name="telefone" value="{{adega['telefone']}}" placeholder="Seu telefone" required>
+                                <input id="telefone" type="text" name="telefone" value="{{adega['telefone']}}" placeholder="(XX) XXXXX-XXXX" onkeyup="mascara('(##) #####-####',this,event,true)" required>
                                 <span class="helper hide"></span>
                             </div>
         
@@ -95,7 +96,7 @@
                             <button class = "button primary">Salvar</button>
 
                             {% if adega['id_adega'] != 'cadastro' %}
-                                <button class="button primary" onclick="excluir()">
+                                <button class="button primary" type="button" onclick="excluir()">
                                     Excluir
                                 </button>
                             {% endif %}
