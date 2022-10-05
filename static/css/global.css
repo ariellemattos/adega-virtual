@@ -4,6 +4,7 @@
 @import url('./components/input.css');
 @import url('./components/decorate.css');
 @import url('./components/table.css');
+@import url('./components/modal.css');
 
 * {
 	box-sizing: border-box;

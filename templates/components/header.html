@@ -1,27 +1,32 @@
 <style>
     .header {
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
         padding: 0;
     }
-
+    
     .header ul {
         display: flex;
+        width: 100%;
         align-items: center;
     }
 
-    .header ul li {
+    .header > ul > ul {
+        justify-content: end;
+    }
+
+    .header li {
         list-style: none;
         margin: 0 25px;
         color: #3e3e3e;
     }
 
-    .header ul li a {
+    .header li a {
         text-decoration: none;
         color: #3e3e3e;
     }
 
-    .header ul li:not(.logo-container) a:hover {
+    .header li:not(.logo-container) a:hover {
         color: #f9ae19;
     }
 
@@ -32,7 +37,7 @@
 
     .logo-container img {
         width: 65px;
-            margin-right: 8px;
+        margin-right: 8px;
     }
 
     .logo-title {
@@ -42,6 +47,11 @@
 
     .logo-title span {
         color: #f9ae19;
+    }
+    
+    .criar-conta{
+        color: #f9ae19;
+        font-weight: bolder;
     }
 </style>
 <div class="header">
@@ -56,17 +66,17 @@
                 </span>
             </a>
         </li>
-        <li><a href="/adega/cadastro">Cadastro de adegas</a></li>
-        <li><a a href="/adegas">Lista de adegas</a></li>
-        <li><a href="/cliente/cadastro">Cadastro de clientes</a></li>
-        <li><a a href="/clientes">Lista de clientes</a></li>
-        <li><a href="/produto/cadastro">Cadastro de produtos</a></li>
-        <li><a a href="/produtos">Lista de produtos</a></li>
+        <li><a href="/adega/cadastro">Adega</a></li>
+        <li><a href="#">Entregador</a></li>
+        <li><a href="#">Carreira</a></li>
 
-        <li>
-            <form action="/logout" id="form_logout" method="POST">
-                <button class="button secondary" >Sair</button>
-            </form>
-        </li>
+        <ul>
+            <li><a href="/cliente/cadastro"> <span class="criar-conta"> criar conta </span> </a></li>
+            <li class="sair-container">
+                <form action="/logout" id="form_logout" method="POST">
+                    <button class="button secondary" >Login</button>
+                </form>
+            </li>
+        </ul>
     </ul>
 </div>

@@ -5,7 +5,11 @@ from services import *
 
 app = Flask(__name__, static_folder='static')
 
-@app.route("/")
+
+@app.route('/')
+def main():
+    return render_template('index.html')
+
 @app.route("/realizarLogin")
 def menu():
     logado = autenticar_login()
@@ -42,10 +46,7 @@ def logout():
 
 @app.route("/adega/cadastro", methods = ["GET"])
 def form_criar_adega_api():
-    logado = autenticar_login()
-    if logado is None:
-        return redirect("/")
-
+    
     adega = {
         'id_adega': 'cadastro', 
         'nomeAdega': '', 
@@ -60,7 +61,7 @@ def form_criar_adega_api():
         
         }
 
-    return render_template("cadastro-adega.html", logado = logado, adega = adega)
+    return render_template("cadastro-adega.html", adega = adega)
 
 @app.route("/adega/cadastro", methods = ["POST"])
 def criar_adega_api():
@@ -136,9 +137,6 @@ def excluir_adega_api(id_adega):
 
 @app.route("/cliente/cadastro", methods = ["GET"])
 def form_criar_cliente_api():
-    logado = autenticar_login()
-    if logado is None:
-        return redirect("/")
 
     cliente = {
         'id_cliente': 'cadastro', 
@@ -154,14 +152,10 @@ def form_criar_cliente_api():
         
         }
 
-    return render_template("cadastro-cliente.html", logado = logado, cliente = cliente)
+    return render_template("cadastro-cliente.html", cliente = cliente)
 
 @app.route("/cliente/cadastro", methods = ["POST"])
 def criar_cliente_api():
-    logado = autenticar_login()
-    if logado is None:
-        return redirect("/")
-
     nomeCliente = request.form["nomeCliente"]
     cpf = request.form["cpf"]
     cep = request.form["cep"]
@@ -175,7 +169,7 @@ def criar_cliente_api():
     ja_existia, cliente = criar_cliente(nomeCliente, cpf, cep, cidade, rua, bairro, nResidencia, complemento, telefone)
 
     mensagem = f"O cliente {cpf} já existe com o id {cliente['id_cliente']}." if ja_existia else f"O cliente {cpf} foi criada com id {cliente['id_cliente']}."
-    return render_template("index.html", logado = logado, mensagem = mensagem)
+    return render_template("index.html", mensagem = mensagem)
 
 @app.route("/clientes")
 def listar_clientes_api():
