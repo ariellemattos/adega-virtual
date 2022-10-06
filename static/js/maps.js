@@ -3,24 +3,34 @@ var searchInput = 'search_input';
 $(document).ready(function () {
     var autocomplete;
     autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
-        types: ['geocode'],
+    types: ['geocode'],
+    componentRestrictions: {
+        country: "BR"
+    }
     });
     
     google.maps.event.addListener(autocomplete, 'place_changed', function () {
         var near_place = autocomplete.getPlace();
-        document.getElementById('loc_lat').value = near_place.geometry.location.lat();
-        document.getElementById('loc_long').value = near_place.geometry.location.lng();
         
-        document.getElementById('latitude_view').innerHTML = near_place.geometry.location.lat();
-        document.getElementById('longitude_view').innerHTML = near_place.geometry.location.lng();
+        latitude_view = near_place.geometry.location.lat();
+        longitude_view = near_place.geometry.location.lng();
+
+        var coordenadas = {lat: latitude_view, lng: longitude_view};
+
+        var mapa = new google.maps.Map(document.getElementById('mapa'), {
+            zoom: 15,
+            center: coordenadas 
+          });
+
+        var marker = new google.maps.Marker({
+            position: coordenadas,
+            map: mapa,
+            title: 'Meu marcador'
+          });
+
     });
+   
 });
 
 
-var autocomplete;
-autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
-types: ['geocode'],
-componentRestrictions: {
-    country: "BR"
-}
-});
+
