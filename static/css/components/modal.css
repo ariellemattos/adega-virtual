@@ -35,7 +35,6 @@
   align-items: center;
   border-bottom: 1px solid #ccc;
   margin-bottom: 1rem;
-  padding-bottom: 1rem;
 }
 
 .modal-body p {
@@ -52,7 +51,16 @@
   top: 0;
 }
 
+.modal-footer{
+  width: 100%;
+  padding-top: 15px;
+  display: flex;
+	justify-content: center;
+
+}
+
+
 #mapa {
-  height:400px;
+  height:300px;
   width:450px;
 }

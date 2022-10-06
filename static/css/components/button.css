@@ -43,3 +43,17 @@
     padding: 10px;
     border-radius: 150px;
 }
+
+/* Disabled */
+
+.button:disabled {
+    background-color: #bdbdbd;
+    border: 1px solid #bdbdbd;
+    color: white;
+}
+
+.button:disabled:hover {
+    background-color: #bdbdbd;
+    border: 1px solid #bdbdbd;
+    color: white;
+}

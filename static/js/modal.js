@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-const openModalButton = document.querySelector("#open-modal");
+const openModalButton = document.querySelector("#search_place_button");
 const closeModalButton = document.querySelector("#close-modal");
 const modal = document.querySelector("#modal");
 const fade = document.querySelector("#fade");
