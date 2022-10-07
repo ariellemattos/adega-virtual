@@ -8,6 +8,7 @@ https://adega.herokuapp.com/adegas
 - CSS;
 - Flask
 - SQLite
+- Google Maps
 
 ## Telas disponiveis 
 - Tela Login
