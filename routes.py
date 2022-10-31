@@ -10,6 +10,10 @@ app = Flask(__name__, static_folder='static')
 def main():
     return render_template('index.html')
 
+@app.route('/site/produtos', methods = ["GET"])
+def siteAdegas():
+    return render_template('produtos.html')
+
 @app.route("/realizarLogin")
 def menu():
     logado = autenticar_login()
