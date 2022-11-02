@@ -26,3 +26,5 @@ SQLAlchemy==1.4.20
 toml==0.10.2
 Werkzeug==2.0.1
 wrapt==1.12.1
+mercadopago==2.2.0
+uuid==1.30.0

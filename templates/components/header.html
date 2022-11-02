@@ -66,6 +66,22 @@
                 </span>
             </a>
         </li>
+    
+        {% if(request.cookies.get("login", "")) %}
+
+        <li><a href="/produto/cadastro">Cadastro de produto</a></li>
+        <li><a href="/produtos">Listagem de produto</a></li>
+        <li><a href="/adegas">Adegas</a></li>
+        <li><a href="/clientes">Clientes</a></li>
+
+        <ul>
+            <li class="sair-container">
+                <form action="/logout" id="form_logout" method="POST">
+                    <button class="button secondary" >Sair</button>
+                </form>
+            </li>
+        </ul>
+        {% else %}
         <li><a href="/adega/cadastro">Adega</a></li>
         <li><a href="#">Entregador</a></li>
         <li><a href="#">Carreira</a></li>
@@ -78,5 +94,6 @@
                 </form>
             </li>
         </ul>
+        {% endif %}       
     </ul>
 </div>

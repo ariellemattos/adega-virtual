@@ -1,6 +1,5 @@
 body {
-	height: 100vh;
-	margin: 0 auto;
+	margin: 0;
 	font-size: 16px;
 }
 
@@ -9,40 +8,35 @@ body * {
 }
 
 .container {
-	width: 100%;
-	height: 100%;
-}
-
-.hero {
-	height: 80%;
-	max-height: 520px;
+	width: 100vw;
 }
 
 .bg {
-	display: flex;
+    display: flex;
+    height: 100%;
+    padding: 20px;
     justify-content: center;
-	height: 100%;
-	padding-bottom: 20px;
+    width: 100%;
 }
 
-.listagem{
+.listagem {
     justify-content: center;
     display: flex;
-    padding: 3rem 0;
-	gap: 15px;
+    gap: 15px;
     flex-wrap: wrap;
-    width: 80%;
-	height: 80%;
+    width: fit-content;
 }
 
-.card{
+.card {
     width: 200px;
-    height: 236px;
+    min-height: 15rem;
+    height: fit-content;
     background-color: #fff;
     background-clip: border-box;
     border-radius: 0.25rem;
-    padding: 1rem 0;
+    padding: 1.5rem;
     cursor: pointer;
+    transition: 100ms ease-in-out;
 }
 
 .card:hover {
@@ -50,24 +44,38 @@ body * {
     transform: scale(1.05);
 }
 
-.img-card{
-    width: 100px;
-    height: 100px;
-    margin-left: 50px;
-    background-color: aqua;
+.img-card {
+    display: flex;
+    width: 100%;
+    height: 7rem;
+    justify-content: center;
+    margin: 0 0 1rem;
 }
 
-.container-card{
-    width: 180px;
-    height: 30px;
-    margin-left: 10px;
-    justify-content: center;
-    
+.product-name {
+    width: 100%;
 }
 
-.price-card{
-    width: 180px;
-    height: 30px;
-    margin-left: 10px;
+.product-price {
+    width: 100%;
+}
+
+.card-info {
+    padding: .5rem 0;
+}
+
+.button-container{
+    width: 100%;
+    display: flex;
     justify-content: center;
+}
+
+.btn-buy{
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.card-info > span {
+    font-size: 1rem;
+    font-weight: 500;
 }

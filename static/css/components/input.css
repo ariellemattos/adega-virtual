@@ -20,7 +20,7 @@
     outline: 1px solid #f9ae19;
 }
 
-.input-box label {
+.input-box label, .input-label {
     font-size: 0.85rem;
     font-weight: 600;
     color: #000000c0;
@@ -30,7 +30,7 @@
     color: #000000be;
 }
 
-.input-box .helper {
+.input-box .helper, .label-helper {
     font-size: 12px;
     max-height: max-content;
 }

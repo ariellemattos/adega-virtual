@@ -49,7 +49,8 @@ CREATE TABLE IF NOT EXISTS produtos (
     id_produto INTEGER PRIMARY KEY AUTOINCREMENT,
     nomeProduto INTEGER(50) NOT NULL,
     preco DOUBLE(50) NOT NULL,
-    quantidade VARCHAR(50) NOT NULL
+    quantidade VARCHAR(50) NOT NULL,
+    img VARCHAR(500) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS usuario (
@@ -98,9 +99,9 @@ def db_criar_cliente(nomeCliente, cpf, cep, cidade, rua, bairro, nResidencia, co
         con.commit()
         return {'id_cliente': id_cliente, 'nomeCliente': nomeCliente, 'cpf': cpf}
 
-def db_criar_produto(nomeProduto, preco, quantidade):
+def db_criar_produto(nomeProduto, preco, quantidade, img):
     with closing(conectar()) as con, closing(con.cursor()) as cur:
-        cur.execute("INSERT INTO produtos (nomeProduto, preco, quantidade) VALUES (?, ?, ?)", [nomeProduto, preco, quantidade])
+        cur.execute("INSERT INTO produtos (nomeProduto, preco, quantidade, img) VALUES (?, ?, ?, ?)", [nomeProduto, preco, quantidade, img])
         id_produto = cur.lastrowid
         con.commit()
         return {'id_produto': id_produto, 'nomeProduto': nomeProduto}
@@ -112,7 +113,7 @@ def db_listar_clientes():
 
 def db_listar_produtos():
     with closing(conectar()) as con, closing(con.cursor()) as cur:
-        cur.execute("SELECT id_produto, nomeProduto, preco, quantidade FROM produtos")
+        cur.execute("SELECT id_produto, nomeProduto, preco, quantidade, img FROM produtos")
         return rows_to_dict(cur.description, cur.fetchall())
 
 def db_listar_adegas():
@@ -132,7 +133,7 @@ def db_consultar_cliente(id_cliente):
 
 def db_consultar_produto(id_produto):
     with closing(conectar()) as con, closing(con.cursor()) as cur:
-        cur.execute("SELECT id_produto, nomeProduto, preco, quantidade FROM produtos WHERE id_produto = ?", [id_produto])
+        cur.execute("SELECT id_produto, nomeProduto, preco, quantidade, img FROM produtos WHERE id_produto = ?", [id_produto])
         return row_to_dict(cur.description, cur.fetchone())
 
 def db_editar_adega(id_adega, nomeAdega, cnpj, cep, cidade, rua, bairro, nEstabelecimento, complemento, telefone):
@@ -151,10 +152,10 @@ def db_editar_cliente(id_cliente, nomeCliente, cpf, cep, cidade, rua, bairro, nR
         con.commit()
         return {'id_cliente': id_cliente, 'nomeCliente': nomeCliente, 'cpf': cpf, 'cep': cep, 'cidade': cidade, 'rua': rua, 'bairro': bairro, 'nResidencia': nResidencia, 'complemento': complemento, 'telefone': telefone}
 
-def db_editar_produto(id_produto, nomeProduto, preco, quantidade):
+def db_editar_produto(id_produto, nomeProduto, preco, quantidade, img):
     with closing(conectar()) as con, closing(con.cursor()) as cur:
         cur.execute(
-            "UPDATE produtos SET nomeProduto = ?, preco = ?, quantidade = ? WHERE id_produto = ?", [nomeProduto, preco, quantidade, id_produto]
+            "UPDATE produtos SET nomeProduto = ?, preco = ?, quantidade = ?, img = ? WHERE id_produto = ?", [nomeProduto, preco, quantidade, img, id_produto]
         )
 
         con.commit()

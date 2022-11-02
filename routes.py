@@ -1,4 +1,5 @@
 from flask import Flask, make_response, request, render_template, redirect, Response,  flash
+from api_mercadopago import pagamento
 
 from database import *
 from services import *
@@ -11,8 +12,15 @@ def main():
     return render_template('index.html')
 
 @app.route('/site/produtos', methods = ["GET"])
-def siteAdegas():
-    return render_template('produtos.html')
+def siteProdutos():
+    lista = db_listar_produtos()
+    return render_template("produtos.html", produtos = lista)
+
+
+@app.route('/comprar/<int:id_produto>')
+def buy_product(id_produto):
+    produto = db_consultar_produto(id_produto)
+    return redirect(pagamento(request, produto=produto))
 
 @app.route("/realizarLogin")
 def menu():
@@ -226,8 +234,9 @@ def form_criar_produto_api():
         'id_produto': 'cadastro', 
         'nomeProduto': '', 
         'preco': '', 
-        'quantidade': ''        
-        }
+        'quantidade': '',
+        'img': ''
+    }
 
     return render_template("cadastro-produto.html", logado = logado, produto = produto)
 
@@ -249,9 +258,9 @@ def criar_produto_api():
     nomeProduto = request.form["nomeProduto"]
     preco = request.form["preco"]
     quantidade = request.form["quantidade"]
+    img = subir_imagem_produto()
 
-    criar_produto(nomeProduto, preco, quantidade)
-
+    criar_produto(nomeProduto, preco, quantidade, img)
 
     mensagem =  f"O produto {nomeProduto} foi criado com sucesso"
     return render_template("index.html", logado = logado, mensagem = mensagem)
@@ -259,13 +268,10 @@ def criar_produto_api():
 
 @app.route("/produtos")
 def listar_produtos_api():
-    logado = autenticar_login()
-    if logado is None:
-        return redirect("/")
 
     lista = db_listar_produtos()
 
-    return render_template("lista-produtos.html", logado = logado, produtos = lista)
+    return render_template("lista-produtos.html", produtos = lista)
 
 @app.route("/produto/<int:id_produto>", methods = ["GET"])
 def form_alterar_produto_api(id_produto):
@@ -287,8 +293,12 @@ def editar_produto_api(id_produto):
     nomeProduto = request.form["nomeProduto"]
     preco = request.form["preco"]
     quantidade = request.form["quantidade"]
+    img = None
 
-    editar_produto(id_produto, nomeProduto, preco, quantidade)
+    if (request.files["imagem"].filename != ''):
+        img = subir_imagem_produto()
+
+    editar_produto(id_produto, nomeProduto, preco, quantidade, img)
 
     return redirect("/produtos")
 

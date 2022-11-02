@@ -60,3 +60,36 @@
 .container-buttons button {
     margin-left: 5px;
 }
+
+.img-input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.img-input {
+    width: 100px;
+    height: 100px;
+    background-color: #dfdfdf;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 100ms background-color ease-in-out;
+}
+
+.img-input:hover {
+    background-color: #cfcfcf;
+}
+
+.img-input-container img {
+    max-width: 100%
+}
+
+.img-input-container .input-label, .img-input-container .label-helper {
+    margin: 5px 0;
+}
+
+.img-input-container .label-helper {
+    color: red;
+}

@@ -15,6 +15,49 @@
                     window.location = "/produtos";
                 }
             }
+
+            function showAlertSelectImage() {
+                document.querySelector('.img-input-container .label-helper').hidden = false;
+            }
+
+            function hideAlertSelectImage() {
+                document.querySelector('.img-input-container .label-helper').hidden = true;
+            }
+
+            function onImageClick() {
+                document.querySelector('#imagem').click()
+            }
+
+            function onSubmit(ev) {
+                if (!document.querySelector('#imagem').files.length) {
+                    showAlertSelectImage();
+                    ev.preventDefault();
+                }
+            }
+
+            function onImageSelect(element) {
+                const imgElement = document.querySelector('.img-input img');
+                if (!element.files[0]) {
+                    imgElement.src = "{{ produto['img'] }}" || '/static/images/inserir-icone-de-imagem.png';
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = () => {
+                    imgElement.src = reader.result;
+                };
+                reader.readAsDataURL(element.files[0]);
+            }
+
+            $(() => {
+                setTimeout(() => {
+                    const imgElement = document.querySelector('#imagem')
+                    console.log('imglen', imgElement.files.length)
+                    if (imgElement.files.length) {
+                        onImageSelect(imgElement)
+                    }
+                }, 0)
+            })
         </script>
     </head>
     <body>
@@ -27,14 +70,26 @@
 
             <div class="right-register">
                 <div class="form-container-register register-in-container">
-                    <form action="/produto/{{ produto['id_produto'] }}" method="POST">
-                    
+                    <form {% if (not produto['img']) %} onsubmit="onSubmit(event)" {% endif %} action="/produto/{{ produto['id_produto'] }}" method="POST" enctype="multipart/form-data">
                         {% if produto['id_produto'] != 'cadastro' %}
                             <h1>Editar Produto</h1>
                         {% else %}
                             <h1>Cadastrar Produto</h1>
                         {% endif %}
                     
+                        <div class="img-input-container">
+                            <label class="input-label">Imagem *</label>
+                            <div id="img-input" class="img-input" onclick="onImageClick()">
+                                {% if (produto['img']) %}
+                                    <img src="{{produto['img']}}">
+                                {% else %}
+                                    <img src="/static/images/inserir-icone-de-imagem.png">
+                                {% endif %}
+                            </div>
+                            <span class="label-helper" hidden >Selecione uma imagem</span>
+                            <input id="imagem" name="imagem" type="file" accept="imagem/*" hidden onchange="onImageSelect(event.target)"/>
+                        </div>
+
                         <div class="input-group">
                             <div class="input-box">
                                 <label for="nomeProduto">Nome *</label>
@@ -53,7 +108,6 @@
                                 <input id="quantidade" type="number" name="quantidade" value="{{produto['quantidade']}}" placeholder="Digite a quantidade" required>
                                 <span class="helper hide"></span>
                             </div>
-        
                         </div>
                         <div class="container-buttons">
                             <button class="button primary" type="submit">Salvar</button>
