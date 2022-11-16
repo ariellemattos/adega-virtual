@@ -6,7 +6,7 @@ https://adega.herokuapp.com/adegas
 ## Tecnologias e linguagens que serão utilizadas neste projeto
 - HTML;
 - CSS;
-- Flask
+- Flask 
 - SQLite
 - Google Maps
 - Mercado Pago
